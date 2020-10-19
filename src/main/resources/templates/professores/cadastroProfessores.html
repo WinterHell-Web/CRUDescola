@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layout/layout">
+	
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    
+        <title>Cadastro - Professores</title>
+    </head>
+
+    <body>
+        <section layout:fragment="conteudo">
+            <div class="alert alert-success" role="alert">
+                Professor cadastrado com sucesso
+            </div>
+            <div class="alert alert-danger" role="alert">
+                Professor já cadastrado
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="InputProfessor">Nome do professor</label>
+                    <input type="text" class="form-control" id="inputProfessor">
+                </div>
+                <div class="form-group">
+                    <label for="InputCPF">CPF</label>
+                    <input type="text" class="form-control" id="inputCPF">
+                </div>
+                <div class="form-group">
+                    <label for="InputFormacao">Formação</label>
+                    <input type="text" class="form-control" id="inputFormacao">
+                </div>
+                <div class="form-group">
+                    <label for="SelectProfessor">Matéria</label>
+                    <select class="form-control" id="selectProfessor">
+                        <option>Matéria 1</option>
+                        <option>Matéria 2</option>
+                        <option>Matéria 3</option>
+                        <option>Matéria 4</option>
+                        <option>Matéria 5</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+              </form>                
+        </section>
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    </body>
+</html>
