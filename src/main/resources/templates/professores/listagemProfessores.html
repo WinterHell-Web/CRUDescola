@@ -16,46 +16,101 @@
 
     <body>
         <section layout:fragment="conteudo">
-            <table class="table table-hover"> 
-                <caption>Tabela de professores cadastrados</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">CPF</th>
-                        <th scope="col">Formação</th>
-                        <th scope="col">Matéria</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Nome</td>
-                        <td>CPF</td>
-                        <td>Formação</td>
-                        <td>Matéria</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="alert alert-success" role="alert">
+                Cadastro de professor apagado com sucesso
+            </div>
+            <div class="table mb-4">
+                <div class="row border-bottom py-3 bg-light">
+                    <div class="col-1 "><strong>#</strong></div>
+                    <div class="col"><strong>Nome</strong></div>
+                    <div class="col-2"><strong>CPF</strong></div>
+                    <div class="col"><strong>Formação</strong></div>
+                    <div class="col"><strong>Matéria</strong></div>
+                    <div class="col-1"><strong>Editar</strong></div>
+                </div>
+                <div class="row border-top border-bottom py-2">
+                    <div class="col-1 align-middle py-2"><strong>1</strong></div>
+                    <div class="col align-middle py-2">Nome</div>
+                    <div class="col-2 align-middle py-2">CPF</div>
+                    <div class="col align-middle py-2">Formação</div>
+                    <div class="col align-middle py-2">Matéria</div>
+                    <div class="col-1">
+                        <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                            </svg>
+                        </button>
+                        <button type="button" class="btn btn-outline-dark">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
             
             <nav aria-label="...">
                 <ul class="pagination justify-content-center">
                     <li class="page-item disabled">
-                        <span class="page-link">Previous</span>
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
                     </li>
                     <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">
-                        2
-                        <span class="sr-only">(current)</span>
-                        </span>
-                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
                     <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
+
+            <!-- Modal - Alteração de cadastro -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Alteração de cadastro</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Nome</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">CPF</label>
+                                    <input class="form-control" id="message-text"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Formação</label>
+                                    <input class="form-control" id="message-text"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SelectCurso">Matéria</label>
+                                    <select class="form-control" id="selectCurso">
+                                        <option>Matéria 1</option>
+                                        <option>Matéria 2</option>
+                                        <option>Matéria 3</option>
+                                        <option>Matéria 4</option>
+                                        <option>Matéria 5</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary">Alterar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
