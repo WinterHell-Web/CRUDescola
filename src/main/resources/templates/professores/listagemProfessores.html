@@ -51,23 +51,25 @@
                 </div>
             </div>
             
-            <nav aria-label="...">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link text-dark" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link text-dark" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <div th:if="${qntItens} > 20">
+                <form method="GET" class="form-vertical  js-form-loading">
+                    <nav aria-label="...">
+                        <ul class="pagination justify-content-center pg-dark">
+                            <li class="page-item " th:classappend="(${currentPage} == 0)? 'active'">
+                                <button name="page" class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </button>
+                            </li>
+                            <li class="page-item" th:each="i : ${#numbers.sequence(navPage - 3, navPage + 3)}" th:classappend="(${currentPage} == (${i} - 1))? 'active'"><button name="page" class="page-link" href="#" th:value="${i} - 1" th:text="${i}" type="submit">1</button></li>
+                            <li class="page-item" th:classappend="(${currentPage} == (${qntPage} - 1))? 'active'">
+                                <button name="page" class="page-link" href="#" aria-label="Next" th:value="${qntPage} - 1">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </form>
+            </div>
 
             <!-- Modal - Alteração de cadastro -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

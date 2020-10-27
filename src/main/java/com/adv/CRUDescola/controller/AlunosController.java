@@ -37,6 +37,11 @@ public class AlunosController
     {
         ModelAndView mv = new ModelAndView("/alunos/listagemAlunos");
 
+        mv.addObject("qntPage", (int) Math.ceil((double) alunos.count() / (double) pageable.getPageSize()));
+        mv.addObject("navPage", contNav(pageable.getPageNumber(), (int) Math.ceil((double) alunos.count() / (double) pageable.getPageSize())));
+        mv.addObject("currentPage", pageable.getPageNumber());
+        mv.addObject("qntItens", alunos.count());
+
         mv.addObject("alunos", alunos.findAll(pageable));
         mv.addObject("cursos", cursos.findAll());
 
@@ -88,5 +93,26 @@ public class AlunosController
         attributes.addFlashAttribute("mensagem3", "Cadastro de aluno apagado com sucesso!");
 
         return new ModelAndView("redirect:/alunos");
+    }
+
+    // Controle de navegação
+    public int contNav (int currentPage, int lastPage)
+    {
+        int countPage;
+        
+        if (currentPage < 4)
+        {
+            countPage = 4;
+        }
+        else if (currentPage > (lastPage - 4))
+        {
+            countPage = lastPage - 3;
+        }
+        else
+        {
+            countPage = currentPage + 1;
+        }
+        
+        return countPage;
     }
 }
