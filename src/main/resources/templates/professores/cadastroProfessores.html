@@ -13,11 +13,14 @@
 
     <body>
         <section layout:fragment="conteudo">
+            <script type="text/javascript" th:src="@{/javascripts/jquery/jquery.mask.min.js}"></script>
+
             <!--
             <div class="alert alert-danger" role="alert">
                 Professor já cadastrado
             </div>
             -->
+            
             <div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(mensagem1)}">
                 <span th:text=${mensagem1}></span>
             </div>
@@ -50,9 +53,7 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
-              </form>   
-              
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+            </form>   
         </section>
     </body>
 </html>

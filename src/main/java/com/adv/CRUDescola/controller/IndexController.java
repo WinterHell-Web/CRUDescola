@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/index")
+@RequestMapping("/")
 public class IndexController 
 {
     @Autowired
@@ -27,7 +27,13 @@ public class IndexController
     private Alunos alunos;
 
     @RequestMapping()
-    public ModelAndView index()
+    public String index1()
+    {
+        return "redirect:/index";
+    }
+
+    @RequestMapping("/index")
+    public ModelAndView index2()
     {
         ModelAndView mv = new ModelAndView("/index");
 
@@ -40,8 +46,12 @@ public class IndexController
     }
 
     @RequestMapping("/teste")
-    public String teste()
+    public ModelAndView teste()
     {
-        return "/teste";
+        ModelAndView mv = new ModelAndView("/teste");
+
+        mv.addObject("materias", materias.findAll());
+
+        return mv;
     }
 }

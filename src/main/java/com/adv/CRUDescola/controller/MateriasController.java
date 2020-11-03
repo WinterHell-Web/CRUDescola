@@ -8,13 +8,12 @@ import com.adv.CRUDescola.repository.Materias;
 import com.adv.CRUDescola.service.MateriasService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,17 +32,12 @@ public class MateriasController
 
     // Controle principal
     @RequestMapping()
-    public ModelAndView listagemMaterias(Materia materia, Pageable pageable)
+    public ModelAndView listagemMaterias(Materia materia)
     {
         ModelAndView mv = new ModelAndView("/materias/listagemMaterias");
 
-        mv.addObject("qntPage", (int) Math.ceil((double) materias.count() / (double) pageable.getPageSize()));
-        mv.addObject("navPage", contNav(pageable.getPageNumber(), (int) Math.ceil((double) materias.count() / (double) pageable.getPageSize())));
-        mv.addObject("currentPage", pageable.getPageNumber());
-        mv.addObject("qntItens", materias.count());
-
-        mv.addObject("materias", materias.findAll(pageable));
-        mv.addObject("cursos", cursos.findAll());
+        mv.addObject("materias", materias.findAll());
+        mv.addObject("cursos", cursos.findAll(Sort.by("nome").ascending()));
 
         return mv;
     }
@@ -54,7 +48,7 @@ public class MateriasController
     {
         ModelAndView mv = new ModelAndView("/materias/cadastroMaterias");
 
-        mv.addObject("cursos", cursos.findAll());
+        mv.addObject("cursos", cursos.findAll(Sort.by("nome").ascending()));
 
         return mv;
     }
@@ -85,34 +79,13 @@ public class MateriasController
     }
 
     // Controle de exclusão
-    @GetMapping("/delete/{id}")
-    public ModelAndView deletarCurso(@PathVariable("id") Integer id, RedirectAttributes attributes)
+    @PostMapping("/delete")
+    public ModelAndView deletarCurso(@RequestParam(name = "id") Integer id, RedirectAttributes attributes)
     {        
         materiasService.excluir(id);
 
         attributes.addFlashAttribute("mensagem3", "Cadastro de materia apagado com sucesso!");
 
         return new ModelAndView("redirect:/materias");
-    }
-
-    // Controle de navegação
-    public int contNav (int currentPage, int lastPage)
-    {
-        int countPage;
-        
-        if (currentPage < 4)
-        {
-            countPage = 4;
-        }
-        else if (currentPage > (lastPage - 4))
-        {
-            countPage = lastPage - 3;
-        }
-        else
-        {
-            countPage = currentPage + 1;
-        }
-        
-        return countPage;
     }
 }

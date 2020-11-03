@@ -16,12 +16,14 @@
             <div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(mensagem1)}">
                 <span th:text=${mensagem1}></span>
             </div>
+            
             <form th:action="@{/cursos/cadastro}" th:object="${curso}" method="POST">
                 <!--
                 <div class="alert alert-danger" role="alert">
                     Curso já cadastrado
                 </div>
                 -->
+
                 <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
                     <th:block th:each="erro : ${#fields.detailedErrors()}">
                         <div>
