@@ -1,10 +1,12 @@
 package com.adv.CRUDescola.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
@@ -14,7 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(AuthenticationManagerBuilder auth) throws Exception 
     {
         auth.inMemoryAuthentication()
-        .withUser("Fabricio").password("{noop}admin").roles("ADM");
+        .withUser("Fabricio").password(passwordEncoder().encode("admin")).roles("ADM");
     }
 
     @Override
@@ -31,5 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         .formLogin().loginPage("/login").permitAll()
         .and()
         .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

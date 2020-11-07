@@ -10,12 +10,19 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" type="text/css" th:href="@{/stylesheets/bootstrap/bootstrap.min.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/stylesheets/loader.css}">
 
         <title>Default</title>
     </head>
     <body>
         <script type="text/javascript" th:src="@{/javascripts/jquery/jquery-3.5.1.min.js}"></script>
         <script type="text/javascript" th:src="@{/javascripts/bootstrap/bootstrap.bundle.min.js}"></script>
+        <script type="text/javascript" th:src="@{/javascripts/loader.js}"></script>
+
+        <!-- Loader -->
+        <div class="loader-wrapper">
+            <span class="loader"><span class="loader-inner"></span></span>
+        </div>
         
         <!-- Menu -->
         <nav class="navbar navbar-expand-xl navbar-dark fixed-top bg-dark">
@@ -26,44 +33,84 @@
         
             <div class="collapse navbar-collapse" id="navbarsExample04">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item" th:classappend="${#httpServletRequest.requestURI.contains('index')} ? 'active'">
                         <a class="nav-link" href="/index">Home<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" th:classappend="${#httpServletRequest.requestURI.contains('escola')} ? 'active'">
                         <a class="nav-link" href="/escola">Escola</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" th:classappend="${#httpServletRequest.requestURI.contains('cursos')} ? 'active'">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Curso</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
-                            <a class="dropdown-item" href="/cursos">Cursos cadastrados</a>
-                            <a class="dropdown-item" href="/cursos/cadastro">Cadastrar curso</a>
+                            <a class="dropdown-item" href="/cursos">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                                Cursos cadastrados
+                            </a>
+                            <a class="dropdown-item" href="/cursos/cadastro">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                                Cadastrar curso
+                            </a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" th:classappend="${#httpServletRequest.requestURI.contains('materias')} ? 'active'">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Matéria</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
-                            <a class="dropdown-item" href="/materias">Matérias cadastradas</a>
-                            <a class="dropdown-item" href="/materias/cadastro">Cadastrar matéria</a>
+                            <a class="dropdown-item" href="/materias">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                                Matérias cadastradas
+                            </a>
+                            <a class="dropdown-item" href="/materias/cadastro">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                                Cadastrar matéria
+                            </a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" th:classappend="${#httpServletRequest.requestURI.contains('professores')} ? 'active'">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Professores</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
-                            <a class="dropdown-item" href="/professores">Professores cadastrados</a>
-                            <a class="dropdown-item" href="/professores/cadastro">Cadastrar professores</a>
+                            <a class="dropdown-item" href="/professores">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                                Professores cadastrados
+                            </a>
+                            <a class="dropdown-item" href="/professores/cadastro">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                                Cadastrar professores
+                            </a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" th:classappend="${#httpServletRequest.requestURI.contains('alunos')} ? 'active'">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Alunos</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
-                            <a class="dropdown-item" href="/alunos">Alunos cadastrados</a>
-                            <a class="dropdown-item" href="/alunos/cadastro">Cadastrar alunos</a>
+                            <a class="dropdown-item" href="/alunos">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                                Alunos cadastrados
+                            </a>
+                            <a class="dropdown-item" href="/alunos/cadastro">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                                Cadastrar alunos
+                            </a>
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="navbar-nav">
-                <label for="Users" class="nav-item nav-link disabled" th:text="${#authentication.name}">Usuário</label>
+                <label for="Users" class="nav-item nav-link active" sec:authentication="name">Usuário</label>
                 <a class="nav-item nav-link" th:href="@{/logout}">Logout</a>
             </div>
         </nav>
