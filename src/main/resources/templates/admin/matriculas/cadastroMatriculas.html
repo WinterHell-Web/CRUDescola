@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+    layout:decorate="~{layout/layout}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <title>Cadastro - Matriculas</title>
+    </head>
+
+    <body>
+        <section layout:fragment="conteudo">
+            <div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(cadastroSuccess)}">
+                <span th:text=${cadastroSuccess}></span>
+            </div>
+            <div class="alert alert-danger" role="alert" th:if="${not #strings.isEmpty(cadastroError)}">
+                <span th:text=${cadastroError}></span>
+            </div>
+                       
+            <form th:action="@{/admin/matriculas/cadastro}" th:object="${matriculasModel}" method="POST">
+                <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                    <th:block th:each="erro : ${#fields.detailedErrors()}">
+                        <div>
+                            <span th:text="${erro.message}">Erro durante o cadastro</span>
+                        </div>
+                    </th:block>
+                </div>
+
+                <div class="form-group">
+                    <label for="SelectCurso">Nome da matéria</label>
+                    <select class="form-control" id="selectCurso" th:field="*{materia.id}">
+                        <option value="">Selecione uma materia...</option>
+                        <optgroup th:each="curso : ${cursos}" th:label="${curso.nome}">
+                            <option th:each="materia : ${curso.listMateria}" th:value="${materia.id}" th:text="${materia.nome}"></option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="SelectCurso">Nome do aluno</label>
+                    <select class="form-control" id="selectCurso" th:field="*{aluno.id}">
+                        <option value="">Selecione um aluno...</option>
+                        <option th:each="aluno : ${alunos}" th:value="${aluno.id}" th:text="${aluno.nome}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="SelectSemestre">Ano</label>
+                    <input type="number" class="form-control" id="inputSemestre" th:min="${#dates.year(#dates.createNow())}" th:max="${#dates.year(#dates.createNow())} + 10" th:value="${#dates.year(#dates.createNow())}" th:field="*{ano}">
+                </div>
+                <div class="form-group">
+                    <label for="SelectSemestre">Semestre</label>
+                    <input type="number" class="form-control" id="inputSemestre" min="1" max="10" value="1" th:field="*{semestre}">
+                </div>
+                <div class="form-group">
+                    <label for="SelectCurso">Situação</label>
+                    <select class="form-control" id="selectCurso" th:field="*{situacao.id}">
+                        <option value="">Selecione uma situação...</option>
+                        <option th:each="situacao : ${situacoes}" th:value="${situacao.id}" th:text="${situacao.descricao}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-dark">Cadastrar</button>
+            </form>
+        </section>
+    </body>
+</html>

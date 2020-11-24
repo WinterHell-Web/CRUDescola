@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+    layout:decorate="~{layout/layout}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Home</title>
+    </head>
+
+    <body>
+        <section layout:fragment="conteudo">
+            <script th:src="@{/javascripts/jquery/jquery-3.5.1.min.js}"></script>
+            <script th:src="@{/javascripts/jquery/jquery.numscroller.js}"></script>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Cursos cadastrados</div>
+                        <div class="card-body">
+                            <h3 class='numscroller text-center' data-min='0' th:data-max="${cursos}" data-delay='5' data-increment='10'></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Matérias cadastradas</div>
+                        <div class="card-body">
+                            <h3 class='numscroller text-center' data-min='0' th:data-max="${materias}" data-delay='5' data-increment='10'></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Professores cadastrados</div>
+                        <div class="card-body">
+                            <h3 class='numscroller text-center' data-min='0' th:data-max="${professores}" data-delay='5' data-increment='10'></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Alunos cadastrados</div>
+                        <div class="card-body">
+                            <h3 class='numscroller text-center' data-min='0' th:data-max="${alunos}" data-delay='5' data-increment='10'></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Matriculas cadastradas</div>
+                        <div class="card-body">
+                            <h3 class='numscroller text-center' data-min='0' th:data-max="${matriculas}" data-delay='5' data-increment='10'></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Usuários cadastrados</div>
+                        <div class="card-body">
+                            <h3 class='numscroller text-center' data-min='0' th:data-max="${usuarios}" data-delay='5' data-increment='10'></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

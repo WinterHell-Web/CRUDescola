@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+    layout:decorate="~{layout/layout}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <title>Cadastro - Matérias</title>
+    </head>
+
+    <body>
+        <section layout:fragment="conteudo">
+            <div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(cadastroSuccess)}">
+                <span th:text=${cadastroSuccess}></span>
+            </div>
+            <div class="alert alert-danger" role="alert" th:if="${not #strings.isEmpty(cadastroError)}">
+                <span th:text=${cadastroError}></span>
+            </div>
+            
+            <form th:action="@{/admin/materias/cadastro}" th:object="${materiasModel}" method="POST">
+                <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                    <th:block th:each="erro : ${#fields.detailedErrors()}">
+                        <div>
+                            <span th:text="${erro.message}">Erro durante o cadastro</span>
+                        </div>
+                    </th:block>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputMateria">Nome da matéria</label>
+                    <input type="text" class="form-control" id="inputMateria" th:field="*{nome}">
+                </div>
+                <div class="form-group">
+                    <label for="SelectCurso">Curso</label>
+                    <select class="form-control" id="selectCurso" th:field="*{curso.id}">
+                        <option value="">Selecione um curso...</option>
+                        <option th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.nome}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="SelectSemestre">Semestre</label>
+                    <input type="number" class="form-control" id="inputSemestre" min="1" max="6" value="1" th:field="*{semestre}">
+                </div>
+                <div class="form-group">
+                    <label for="SelectProfessor">Professor</label>
+                    <select class="form-control" id="selectProfessor" th:field="*{professor.id}">
+                        <option value="">Selecione um professor...</option>
+                        <option th:each="professor : ${professores}" th:value="${professor.id}" th:text="${professor.nome}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-dark">Cadastrar</button>
+            </form>                
+        </section>
+    </body>
+</html>

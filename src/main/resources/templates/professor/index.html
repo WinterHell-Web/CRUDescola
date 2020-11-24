@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+    layout:decorate="~{layout/layout}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Home</title>
+    </head>
+
+    <body>
+        <section layout:fragment="conteudo">
+            <script th:src="@{/javascripts/jquery/jquery-3.5.1.min.js}"></script>
+            <script th:src="@{/javascripts/jquery/jquery.numscroller.js}"></script>
+
+            <p class="h3 mb-5" th:text="'Bem vindo, ' + ${professor.nome}"></p>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Matérias cadastradas</div>
+                        <div class="card-body">
+                            <h3 class='numscroller text-center' data-min='0' th:data-max="${materias}" data-delay='5' data-increment='10'></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 250px;">Informações de usuário</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Nome</th>
+                        <td th:text="${professor.nome}">Nome</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CPF</th>
+                        <td th:text="${professor.cpf}">CPF</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Formação</th>
+                        <td th:text="${professor.formacao}">Formação</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </body>
+</html>

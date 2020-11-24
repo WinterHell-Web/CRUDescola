@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+    layout:decorate="~{layout/layout}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Cadastrados - Matérias</title>
+
+        <link rel="stylesheet" type="text/css" th:href="@{/stylesheets/dataTables/jquery.dataTables.css}">
+    </head>
+
+    <body>
+        <section layout:fragment="conteudo">
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Curso</th>
+                        <th style="width: 100px;">Semestre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="materia : ${professores.listMateria}">
+                        <td th:text="${materia.nome}">Nome</td>
+                        <td th:text="${materia.curso.nome}">Curso</td>
+                        <td th:text="${materia.semestre}">Semestre</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th><input style="width: 100%" type="text" placeholder="Procurar nome"></th>
+                        <th><input style="width: 100%" type="text" placeholder="Procurar curso"></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+            
+            <script type="text/javascript" th:src="@{/javascripts/jquery/jquery.dataTables.js}"></script>
+            <script type="text/javascript" th:src="@{/javascripts/jquery/jquery.tableControl.admin.js}"></script>
+        </section>
+    </body>
+</html>

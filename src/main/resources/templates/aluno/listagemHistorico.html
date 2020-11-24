@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+    layout:decorate="~{layout/layout}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Cadastrados - Alunos</title>
+
+        <link rel="stylesheet" type="text/css" th:href="@{/stylesheets/dataTables/jquery.dataTables.css}">
+    </head>
+
+    <body>
+        <section layout:fragment="conteudo">
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nome da matéria</th>
+                        <th>Curso</th>
+                        <th style="width: 100px;">Nota 1</th>
+                        <th style="width: 100px;">Nota 2</th>
+                        <th style="width: 100px;">Nota final</th>
+                        <th style="width: 100px;">Faltas</th>
+                        <th style="width: 100px;">Situação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="matricula : ${alunos.listMatricula}">
+                        <td th:text="${matricula.materia.nome}">Nome da matéria</td>
+                        <td th:text="${matricula.materia.curso.nome}">Curso</td>
+                        <td th:text="${matricula.nota1}">Nota 1</td>
+                        <td th:text="${matricula.nota2}">Nota 2</td>
+                        <td th:text="${matricula.notaFinal}">Nota final</td>
+                        <td th:text="${matricula.faltas}">Faltas</td>
+                        <td th:text="${matricula.situacao.descricao}">Situação</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th><input style="width: 100%" type="text" placeholder="Procurar matéria"></th>
+                        <th><input style="width: 100%" type="text" placeholder="Procurar curso"></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <script type="text/javascript" th:src="@{/javascripts/jquery/jquery.dataTables.js}"></script>
+            <script type="text/javascript" th:src="@{/javascripts/jquery/jquery.tableControl.aluno.js}"></script>
+        </section>
+    </body>
+</html>

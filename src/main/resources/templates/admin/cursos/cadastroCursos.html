@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+    layout:decorate="~{layout/layout}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <title>Cadastro - Cursos</title>
+    </head>
+
+    <body>
+        <section layout:fragment="conteudo">
+            <div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(cadastroSuccess)}">
+                <span th:text=${cadastroSuccess}></span>
+            </div>
+            <div class="alert alert-danger" role="alert" th:if="${not #strings.isEmpty(cadastroError)}">
+                <span th:text=${cadastroError}></span>
+            </div>
+            
+            <form th:action="@{/admin/cursos/cadastro}" th:object="${cursosModel}" method="POST">
+                <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                    <th:block th:each="erro : ${#fields.detailedErrors()}">
+                        <div>
+                            <span th:text="${erro.message}">Erro durante o cadastro</span>
+                        </div>
+                    </th:block>
+                </div>
+
+                <div class="form-group">
+                    <label for="nome" class="control-label">Nome do curso</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="nome" th:field="*{nome}"/>
+                </div>
+                <button type="submit" class="btn btn-dark">Cadastrar</button>
+            </form>
+        </section>
+    </body>
+</html>

@@ -1,35 +1,89 @@
 package com.adv.CRUDescola.service;
 
-import com.adv.CRUDescola.model.Materia;
-import com.adv.CRUDescola.repository.Materias;
+import com.adv.CRUDescola.model.MateriasModel;
+import com.adv.CRUDescola.repository.MateriasRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MateriasService 
 {
     @Autowired
-    private Materias materias;
+    private MateriasRepository materias;
 
-    public void cadastrar(Materia materia)
+    public String[] cadastrar(MateriasModel materia)
     {
-        // Regras de negócio...
+        String[] response = new String[2];
 
-        this.materias.save(materia);
+        String msg1 = "cadastroSuccess";
+        String msg2 = "cadastroError";
+
+        try 
+        {
+            materias.save(materia);
+
+            response[0] = msg1;
+            response[1] = "Matéria cadastrada com sucesso!";
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            response[0] = msg2;
+            response[1] = "Matéria já cadastrada";
+        }
+        catch (Exception e)
+        {
+            response[0] = msg2;
+            response[1] = "Erro ao cadastrar a matéria";
+        }
+
+        return response;
     }
 
-    public void atualizar(Materia materia)
+    public String[] atualizar(MateriasModel materia)
     {
-        // Regras de negócio...
+        String[] response = new String[2];
 
-        this.materias.save(materia);
+        String msg1 = "alteracaoSuccess";
+        String msg2 = "alteracaoError";
+
+        try 
+        {
+            materias.save(materia);
+
+            response[0] = msg1;
+            response[1] = "Cadastro de matéria alterada com sucesso!";
+        }
+        catch (Exception e)
+        {
+            response[0] = msg2;
+            response[1] = "Erro ao alterar a matéria";
+        }
+        
+        return response;
     }
 
-    public void excluir(Integer id)
+    public String[] excluir(Integer id)
     {
-        // Regras de negócio...
+        String[] response = new String[2];
 
-        this.materias.deleteById(id);
+        String msg1 = "deleteSuccess";
+        String msg2 = "deleteError";
+
+        try 
+        {
+            materias.deleteById(id);
+
+            response[0] = msg1;
+            response[1] = "Cadastro de matéria deletada com sucesso!";
+        }
+        catch (Exception e)
+        {
+            response[0] = msg2;
+            response[1] = "Erro ao deletar a matéria";
+        }
+        
+        return response;
     }
 }
