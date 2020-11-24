@@ -64,6 +64,29 @@ public class MatriculasService
         return response;
     }
 
+    public String[] atualizarNotaFalta(MatriculasModel matricula)
+    {
+        String[] response = new String[2];
+
+        String msg1 = "alteracaoSuccess";
+        String msg2 = "alteracaoError";
+
+        try 
+        {
+            matriculas.updateMatriculaById(matricula.getNota1(), matricula.getNota2(), matricula.getCalcNotaFinal(), matricula.getFaltas(), matricula.getId());
+
+            response[0] = msg1;
+            response[1] = "Cadastro de matricula alterada com sucesso!";
+        }
+        catch (Exception e)
+        {
+            response[0] = msg2;
+            response[1] = "Erro ao alterar a matricula";
+        }
+        
+        return response;
+    }
+
     public String[] excluir(Integer id)
     {
         String[] response = new String[2];

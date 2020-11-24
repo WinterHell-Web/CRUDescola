@@ -5,7 +5,9 @@ import java.util.List;
 import com.adv.CRUDescola.model.UsuariosModel;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface UsuariosRepository extends JpaRepository<UsuariosModel, Integer>
 {
@@ -29,4 +31,10 @@ public interface UsuariosRepository extends JpaRepository<UsuariosModel, Integer
                     "AND t1.regra_usuario = ? " +
                     "AND t1.ativo_usuario = TRUE", nativeQuery = true)
     public List<UsuariosModel> findNotLinkedUser(String regra);
+
+    // Atualiza a senha para o usuario referente
+    @Modifying
+    @Transactional(readOnly = false)
+    @Query(value = "UPDATE usuarios SET password_usuario = ?1 WHERE id_usuario = ?2", nativeQuery = true)
+    public UsuariosModel updatePass(String password, Integer id);
 }

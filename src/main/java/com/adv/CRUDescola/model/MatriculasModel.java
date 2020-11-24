@@ -38,10 +38,10 @@ public class MatriculasModel
     private Integer semestre;
 
     @Column(name = "nota_1_matricula", nullable = true)
-    private double nota1;
+    private Integer nota1;
 
     @Column(name = "nota_2_matricula", nullable = true)
-    private double nota2;
+    private Integer nota2;
 
     @Column(name = "nota_final_matricula", nullable = true)
     private double notaFinal;
@@ -57,24 +57,36 @@ public class MatriculasModel
     {
         super();
 
+        this.id = 0;
         this.ano = 0;
         this.semestre = 0;
-        this.nota1 = 0.0;
-        this.nota2 = 0.0;
+        this.nota1 = 0;
+        this.nota2 = 0;
         this.notaFinal = 0.0;
         this.faltas = 0;
     }
 
-    public MatriculasModel(Integer ano, Integer semestre, double nota1, double nota2, double notaFinal, Integer faltas)
+    public MatriculasModel(Integer id, Integer ano, Integer semestre, Integer nota1, Integer nota2, double notaFinal, Integer faltas)
     {
         super( );
 
+        this.id = id;
         this.ano = ano;
         this.semestre = semestre;
         this.nota1 = nota1;
         this.nota2 = nota2;
         this.notaFinal = notaFinal;
         this.faltas = faltas;
+    }
+
+    public Integer getId() 
+    {
+        return this.id;
+    }
+
+    public void setId(Integer id) 
+    {
+        this.id = id;
     }
 
     public MateriasModel getMateria() 
@@ -117,25 +129,25 @@ public class MatriculasModel
         this.semestre = semestre;
     }
 
-    public double getNota1() 
+    public Integer getNota1() 
     {
         return this.nota1;
     }
 
-    public void setNota1(double nota1) 
+    public void setNota1(Integer nota1) 
     {
         this.nota1 = nota1;
     }
 
-    public double getNota2() 
+    public Integer getNota2() 
     {
         return this.nota2;
     }
 
-    public void setNota2(double nota2) 
+    public void setNota2(Integer nota2) 
     {
         this.nota2 = nota2;
-    }
+    } 
 
     public double getNotaFinal() 
     {
@@ -165,7 +177,16 @@ public class MatriculasModel
     public void setSituacao(SituacoesModel situacao) 
     {
         this.situacao = situacao;
-    }    
+    } 
+
+    public double getCalcNotaFinal()
+    {
+        double response;
+
+        response = (this.nota1 + this.nota2) / 2.0;
+
+        return response;
+    }
 
     @Override
     public boolean equals(Object o) 

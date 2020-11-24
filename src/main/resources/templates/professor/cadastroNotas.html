@@ -5,25 +5,38 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>Cadastrado - Notas</title>
+        <title>Cadastrado - Notas e faltas</title>
 
         <link rel="stylesheet" type="text/css" th:href="@{/stylesheets/dataTables/jquery.dataTables.css}">
     </head>
 
     <body>
         <section layout:fragment="conteudo">
-            <span th:each="materia,iterStat : ${professores.listMateria}">
-                <p class="h2 mb-3" th:text="${materia.nome}"/><th:block th:if="${!iterStat.last}"><br></th:block>
+            <div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(alteracaoSuccess)}">
+                <span th:text=${alteracaoSuccess}></span>
+            </div>
+            <div class="alert alert-danger" role="alert" th:if="${not #strings.isEmpty(alteracaoError)}">
+                <span th:text=${alteracaoError}></span>
+            </div>
 
-                <table id="example" class="display" style="width:100%">
+            <div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(deleteSuccess)}">
+                <span th:text=${deleteSuccess}></span>
+            </div>
+            <div class="alert alert-danger" role="alert" th:if="${not #strings.isEmpty(deleteError)}">
+                <span th:text=${deleteError}></span>
+            </div>
+
+            <span th:each="materia,iterStat : ${professores.listMateria}">
+                <p class="h2 mb-3" th:text="${materia.nome}"/>
+                <table id="" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>Aluno</th>
-                            <th>Nota 1</th>
-                            <th>Nota 2</th>
-                            <th>Nota final</th>
-                            <th>Faltas</th>
-                            <th>Editar</th>
+                            <th style="width: 150px;">Nota 1</th>
+                            <th style="width: 150px;">Nota 2</th>
+                            <th style="width: 150px;">Nota final</th>
+                            <th style="width: 150px;">Faltas</th>
+                            <th style="width: 100px;">Editar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +47,7 @@
                             <td th:text="${matricula.notaFinal}"></td>
                             <td th:text="${matricula.faltas}"></td>
                             <td>
-                                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter" th:data-id="${materia.id}" th:data-nome="${materia.nome}" th:data-curso="${materia.curso.id}" th:data-semestre="${materia.semestre}" th:data-professor="${materia.professor != null} ? ${materia.professor.nome} : '-'">
+                                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter" th:data-id="${matricula.id}" th:data-nome="${matricula.aluno.nome}" th:data-nota1="${matricula.nota1}" th:data-nota2="${matricula.nota2}" th:data-faltas="${matricula.faltas}">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                     </svg>
@@ -53,10 +66,52 @@
                         </tr>
                     </tfoot>
                 </table>
+
+                <div class="mb-5"></div>
             </span>
+
+            <!-- Modal - Alteração de cadastro -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Atribuição de notas</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="#" th:action="@{/professor/cadNotas}" th:object="${matriculasModel}" method="POST">
+                            <div class="modal-body">
+                                <input type="hidden" id="id" value="" th:field="*{id}">
+                                <div class="form-group">
+                                    <label for="recipient-nome" class="col-form-label">Nome</label>
+                                    <input type="text" class="form-control" id="nome" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-nome" class="col-form-label">Nota 1</label>
+                                    <input type="number" minlength="0" maxlength="10" class="form-control" id="nota1" th:field="*{nota1}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-nome" class="col-form-label">Nota 2</label>
+                                    <input type="number" minlength="0" maxlength="10" class="form-control" id="nota2" th:field="*{nota2}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-nome" class="col-form-label">Faltas</label>
+                                    <input type="number" minlength="0" class="form-control" id="faltas" th:field="*{faltas}">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             
+            <script type="text/javascript" th:src="@{/javascripts/modal/modalControlNotasFaltas.js}"></script>
             <script type="text/javascript" th:src="@{/javascripts/jquery/jquery.dataTables.js}"></script>
-            <script type="text/javascript" th:src="@{/javascripts/jquery/jquery.tableControl.admin.js}"></script>
+            <script type="text/javascript" th:src="@{/javascripts/jquery/jquery.tableControl.professor.js}"></script>
         </section>
     </body>
 </html>

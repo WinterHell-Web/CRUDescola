@@ -70,6 +70,31 @@ public class UsuariosService
         return response;
     }
 
+    public String[] atualizarPass(UsuariosModel usuario)
+    {
+        String[] response = new String[2];
+
+        String msg1 = "alteracaoSuccess";
+        String msg2 = "alteracaoError";
+
+        try 
+        {
+            usuario.setPassword(securityConfig.passwordEncoder().encode(usuario.getPassword()));
+
+            usuarios.updatePass(usuario.getPassword(), usuario.getId());
+
+            response[0] = msg1;
+            response[1] = "Cadastro de senha alterado com sucesso!";
+        }
+        catch (Exception e)
+        {
+            response[0] = msg2;
+            response[1] = "Erro ao alterar a senha";
+        }
+        
+        return response;
+    }
+
     public String[] excluir(Integer id)
     {
         String[] response = new String[2];

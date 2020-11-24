@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+    layout:decorate="~{layout/layout}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Cadastrados - Alunos</title>
+
+        <link rel="stylesheet" type="text/css" th:href="@{/stylesheets/dataTables/jquery.dataTables.css}">
+    </head>
+
+    <body>
+        <section layout:fragment="conteudo">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 250px;">Informações de usuário</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Nome</th>
+                        <td th:text="${professor.nome}">Nome</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CPF</th>
+                        <td th:text="${professor.cpf}">CPF</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Formação</th>
+                        <td th:text="${professor.formacao}">Formação</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter1" th:data-id="${professor.id}" th:data-nome="${professor.nome}" th:data-cpf="${professor.cpf}" th:data-formacao="${professor.formacao}" th:data-user="${professor.usuario.id}">
+                Alterar dados cadastrais
+            </button>
+
+            <button type="button" class="btn btn-dark disabled" data-toggle="modal" data-target="#exampleModalCenter" th:data-id="${professor.usuario.id}">
+                Alterar senha
+            </button>
+
+            <!-- Modal - Alteração de senha -->
+            <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Alteração de dados cadastrais</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form th:action="@{/aluno/dadosCad/update/cad}" th:object="${professoresModel}" method="POST">
+                            <div class="modal-body">
+                                <input type="hidden" id="id1" value="" th:field="*{id}">
+                                <div class="form-group">
+                                    <label for="recipient-nome" class="col-form-label">Nome</label>
+                                    <input type="text" class="form-control" id="nome" th:field="*{nome}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-cpf" class="col-form-label">CPF</label>
+                                    <input type="text" class="form-control" id="cpf" th:field="*{cpf}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-nome" class="col-form-label">Formação</label>
+                                    <input type="text" class="form-control" id="formacao" th:field="*{formacao}">
+                                </div>
+                                <input type="hidden" id="user" value="" th:field="*{usuario.id}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal - Alteração de senha -->
+            <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Alteração de senha</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form th:action="@{/aluno/dadosCad/update/pass}" th:object="${usuariosModel}" method="POST">
+                            <div class="modal-body">
+                                <input type="hidden" id="id2" value="" th:field="*{id}">
+                                <div class="form-group">
+                                    <label for="recipient-password" class="col-form-label">Nova senha</label>
+                                    <input type="password" class="form-control" id="password" th:field="*{password}">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript" th:src="@{/javascripts/modal/modalControlPass.js}"></script>
+            <script type="text/javascript" th:src="@{/javascripts/modal/modalControlDadoCad.js}"></script>
+            <script type="text/javascript" th:src="@{/javascripts/jquery/jquery.dataTables.js}"></script>
+            <script type="text/javascript" th:src="@{/javascripts/jquery/jquery.tableControl.aluno.js}"></script>
+        </section>
+    </body>
+</html>

@@ -13,11 +13,12 @@
         <section layout:fragment="conteudo">
             <script th:src="@{/javascripts/jquery/jquery.mask.min.js}"></script>
 
-            <!--
-            <div class="alert alert-danger" role="alert">
-                Aluno já cadastrado
+            <div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(cadastroSuccess)}">
+                <span th:text=${cadastroSuccess}></span>
             </div>
-            -->
+            <div class="alert alert-danger" role="alert" th:if="${not #strings.isEmpty(cadastroError)}">
+                <span th:text=${cadastroError}></span>
+            </div>
             
             <div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(mensagem1)}">
                 <span th:text=${mensagem1}></span>
