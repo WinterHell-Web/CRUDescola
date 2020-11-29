@@ -30,15 +30,15 @@
 
                 <div class="form-group">
                     <label for="InputProfessor">Nome do professor</label>
-                    <input type="text" class="form-control" id="inputProfessor" th:field="*{nome}">
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="inputProfessor" th:field="*{nome}">
                 </div>
                 <div class="form-group">
                     <label for="InputCPF">CPF</label>
-                    <input type="text" minlength="14" maxlength="14" class="form-control" id="inputCPF" th:field="*{cpf}" onkeypress="$(this).mask('000.000.000-00');">
+                    <input type="text" minlength="14" maxlength="14" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="inputCPF" th:field="*{cpf}" onkeypress="$(this).mask('000.000.000-00');">
                 </div>
                 <div class="form-group">
                     <label for="InputFormacao">Formação</label>
-                    <input type="text" class="form-control" id="inputFormacao" th:field="*{formacao}">
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="inputFormacao" th:field="*{formacao}">
                 </div>
                 <div class="form-group">
                     <label for="SelectUsuario">Usuário</label>

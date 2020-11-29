@@ -19,14 +19,15 @@ public class UsuariosModel
     @Column(name = "id_usuario", insertable = false, updatable = false)
     private Integer id;
 
-    @NotEmpty(message = "User é obrigatório")
+    @NotEmpty(message = "User do usuário é obrigatório")
     @Column(name = "user_usuario", unique = true)
     private String user;
 
-    @NotEmpty(message = "Password é obrigatório")
+    @NotEmpty(message = "Senha do usuário é obrigatória")
     @Column(name = "password_usuario")
     private String password;
 
+    @NotEmpty(message = "Nível de acesso so usuário é obrigatório")
     @Column(name = "regra_usuario")
     private String regra;
 

@@ -10,6 +10,8 @@ import com.adv.CRUDescola.model.UsuariosModel;
 import com.adv.CRUDescola.repository.ProfessoresRepository;
 import com.adv.CRUDescola.repository.UsuariosRepository;
 import com.adv.CRUDescola.service.MatriculasService;
+import com.adv.CRUDescola.service.ProfessoresService;
+import com.adv.CRUDescola.service.UsuariosService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,12 @@ public class ProfessorController
     @Autowired
     private MatriculasService matriculasService;
 
+    @Autowired
+    private ProfessoresService professoresService;
+
+    @Autowired
+    private UsuariosService usuariosService;
+
     // Controle de dados cadastrais
     @RequestMapping("/dadosCad")
     public ModelAndView listagemDadosCad (ProfessoresModel professor, UsuariosModel usuario, Principal principal)
@@ -43,6 +51,24 @@ public class ProfessorController
         mv.addObject("usuario", usu);
 
         return mv;
+    }
+    @PostMapping("/dadosCad/update/cad")
+    public ModelAndView alteracaoDadosCad(@Valid ProfessoresModel professor, RedirectAttributes attributes)
+    {
+        String[] mensagem = professoresService.atualizar(professor);
+  
+        attributes.addFlashAttribute(mensagem[0], mensagem[1]);
+
+        return new ModelAndView("redirect:/professor/dadosCad");
+    }
+    @PostMapping("/dadosCad/update/pass")
+    public ModelAndView alteracaoDadosCad(UsuariosModel usuario, RedirectAttributes attributes)
+    {
+        String[] mensagem = usuariosService.atualizarPass(usuario);
+  
+        attributes.addFlashAttribute(mensagem[0], mensagem[1]);
+
+        return new ModelAndView("redirect:/professor/dadosCad");
     }
     
     // Controle de listagem de matérias

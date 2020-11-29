@@ -23,17 +23,17 @@ public class MateriasModel
     @Column(name = "id_materia", insertable = false, updatable = false)
     private Integer id;
 
-    @NotEmpty(message = "Nome é obrigatório")
+    @NotEmpty(message = "Nome da matéria é obrigatório")
     @Column(name = "nome_materia")
     private String nome;
-
-    @NotNull(message = "Semetre é obrigatório")
-    @Column(name = "semestre_materia")
-    private Integer semestre;
 
     @ManyToOne
     @JoinColumn(name = "curso_id", referencedColumnName = "id_curso", nullable = false)
     private CursosModel curso;
+
+    @NotNull(message = "Semetre da matéria é obrigatório")
+    @Column(name = "semestre_materia")
+    private Integer semestre;
 
     @ManyToOne
     @JoinColumn(name = "professor_id", referencedColumnName = "id_professor")

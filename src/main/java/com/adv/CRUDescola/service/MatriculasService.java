@@ -1,6 +1,10 @@
 package com.adv.CRUDescola.service;
 
+import com.adv.CRUDescola.model.AlunosModel;
+import com.adv.CRUDescola.model.MateriasModel;
 import com.adv.CRUDescola.model.MatriculasModel;
+import com.adv.CRUDescola.repository.AlunosRepository;
+import com.adv.CRUDescola.repository.MateriasRepository;
 import com.adv.CRUDescola.repository.MatriculasRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +17,38 @@ public class MatriculasService
     @Autowired
     private MatriculasRepository matriculas;
 
+    @Autowired
+    private AlunosRepository alunos;
+
+    @Autowired
+    private MateriasRepository materias;
+
     public String[] cadastrar(MatriculasModel matricula)
     {
         String[] response = new String[2];
 
         String msg1 = "cadastroSuccess";
         String msg2 = "cadastroError";
+
+        AlunosModel aluno = alunos.findOneById(matricula.getAluno().getId());
+        MateriasModel materia = materias.findOneById(matricula.getMateria().getId());
+
+        if (!aluno.getListMatricula().isEmpty())
+        {
+            for (MatriculasModel aux : aluno.getListMatricula())
+            {
+                if (!aux.getMateria().getCurso().getId().equals(materia.getCurso().getId()))
+                {
+                    if (aux.getMateria().getCurso().getPeriodo().equals(materia.getCurso().getPeriodo()))
+                    {
+                        response[0] = msg2;
+                        response[1] = "O aluno não pode estar matriculado em dois cursos no mesmo período";
+
+                        return response;
+                    }
+                }
+            }
+        }
 
         try 
         {
@@ -41,16 +71,16 @@ public class MatriculasService
         return response;
     }
 
-    public String[] atualizar(MatriculasModel matricula)
+    public String[] atualizarSituacao(MatriculasModel matricula)
     {
         String[] response = new String[2];
 
         String msg1 = "alteracaoSuccess";
-        String msg2 = "alteracaoError";
+        String msg2 = "alteracaoError";        
 
         try 
         {
-            matriculas.save(matricula);
+            matriculas.updateSituacaoById(matricula.getSituacao().getId(), matricula.getId());
 
             response[0] = msg1;
             response[1] = "Cadastro de matricula alterada com sucesso!";

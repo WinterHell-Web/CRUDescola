@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,6 +43,16 @@ public class MatriculasController
         ModelAndView mv = new ModelAndView("/admin/matriculas/listagemMatriculas");
 
         mv.addObject("alunos", alunos.findAll());
+
+        return mv;
+    }
+    @GetMapping(value = "/aluno/{id}")
+    public ModelAndView listagemMatriculasAluno(@PathVariable("id") Integer id, MatriculasModel matricula)
+    {
+        ModelAndView mv = new ModelAndView("/admin/matriculas/listagemMatriculasAluno");
+
+        mv.addObject("aluno", alunos.findOneById(id));
+        mv.addObject("situacoes", situacoes.findAll(Sort.by("descricao").ascending()));
 
         return mv;
     }
@@ -76,7 +88,7 @@ public class MatriculasController
     @PostMapping("/update")
     public ModelAndView editarMateria(@Valid MatriculasModel matricula, BindingResult result, RedirectAttributes attributes)
     {
-        String[] mensagem = matriculasService.atualizar(matricula);
+        String[] mensagem = matriculasService.atualizarSituacao(matricula);
   
         attributes.addFlashAttribute(mensagem[0], mensagem[1]);
 

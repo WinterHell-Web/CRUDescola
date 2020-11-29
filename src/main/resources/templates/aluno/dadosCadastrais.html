@@ -50,7 +50,7 @@
                 Alterar dados cadastrais
             </button>
 
-            <button type="button" class="btn btn-dark disabled" data-toggle="modal" data-target="#exampleModalCenter" th:data-id="${aluno.usuario.id}">
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter2" th:data-id="${aluno.usuario.id}">
                 Alterar senha
             </button>
 
@@ -74,7 +74,8 @@
                                 <input type="hidden" class="form-control" id="ra" th:field="*{ra}">
                                 <div class="form-group">
                                     <label for="recipient-cpf" class="col-form-label">CPF</label>
-                                    <input type="text" class="form-control" id="cpf" th:field="*{cpf}">
+                                    <input type="text" class="form-control" id="cpf1" disabled>
+                                    <input type="hidden" id="cpf2" th:field="*{cpf}">
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-nome" class="col-form-label">Data de nascimento</label>
@@ -103,7 +104,7 @@
                         </div>
                         <form th:action="@{/aluno/dadosCad/update/pass}" th:object="${usuariosModel}" method="POST">
                             <div class="modal-body">
-                                <input type="hidden" id="id2" value="" th:field="*{id}">
+                                <input type="hidden" id="id" value="" th:field="*{id}">
                                 <div class="form-group">
                                     <label for="recipient-password" class="col-form-label">Nova senha</label>
                                     <input type="password" class="form-control" id="password" th:field="*{password}">

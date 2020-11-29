@@ -9,6 +9,7 @@ CREATE TABLE cursos
 (
     id_curso				INT NOT NULL AUTO_INCREMENT,
     nome_curso				VARCHAR(50) NOT NULL,
+    periodo_curso			VARCHAR(10) NOT NULL,
     PRIMARY KEY ( id_curso ),
     UNIQUE ( nome_curso )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

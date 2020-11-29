@@ -21,9 +21,13 @@ public class CursosModel
     @Column(name = "id_curso", insertable = false, updatable = false)
     private Integer id;
 
-    @NotEmpty(message = "Nome é obrigatório")
+    @NotEmpty(message = "Nome do curso é obrigatório")
     @Column(name = "nome_curso", unique = true)
     private String nome;
+
+    @NotEmpty(message = "Periodo do curso é obrigatório")
+    @Column(name = "periodo_curso")
+    private String periodo;
 
     @OneToMany(mappedBy = "curso")
     private List<MateriasModel> listMateria;
@@ -62,6 +66,16 @@ public class CursosModel
     public void setNome(String nome) 
     {
         this.nome = nome;
+    }
+
+    public String getPeriodo() 
+    {
+        return this.periodo;
+    }
+
+    public void setPeriodo(String periodo) 
+    {
+        this.periodo = periodo;
     }
 
     public List<MateriasModel> getListMateria() 

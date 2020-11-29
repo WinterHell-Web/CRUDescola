@@ -24,15 +24,15 @@ public class AlunosModel
     @Column(name = "id_aluno", insertable = false, updatable = false)
     private Integer id;
 
-    @NotEmpty(message = "Nome é obrigatório")
+    @NotEmpty(message = "Nome do aluno é obrigatório")
     @Column(name = "nome_aluno")
     private String nome;
 
-    @NotEmpty(message = "RA é obrigatório")
+    @NotEmpty(message = "RA do aluno é obrigatório")
     @Column(name = "ra_aluno", unique = true)
     private String ra;
 
-    @NotEmpty(message = "CPF é obrigatório")
+    @NotEmpty(message = "CPF do aluno é obrigatório")
     @Column(name = "cpf_aluno", unique = true)
     private String cpf;
 

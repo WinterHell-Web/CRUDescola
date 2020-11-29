@@ -36,5 +36,5 @@ public interface UsuariosRepository extends JpaRepository<UsuariosModel, Integer
     @Modifying
     @Transactional(readOnly = false)
     @Query(value = "UPDATE usuarios SET password_usuario = ?1 WHERE id_usuario = ?2", nativeQuery = true)
-    public UsuariosModel updatePass(String password, Integer id);
+    public void updatePass(String password, Integer id);
 }

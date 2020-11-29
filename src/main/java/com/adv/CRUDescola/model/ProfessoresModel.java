@@ -23,15 +23,15 @@ public class ProfessoresModel
     @Column(name = "id_professor", insertable = false, updatable = false)
     private Integer id;
 
-    @NotEmpty(message = "Nome é obrigatório")
+    @NotEmpty(message = "Nome do professor é obrigatório")
     @Column(name = "nome_professor", unique = true)
     private String nome;
 
-    @NotEmpty(message = "CPF é obrigatório")
+    @NotEmpty(message = "CPF do professor é obrigatório")
     @Column(name = "cpf_professor", unique = true)
     private String cpf;
 
-    @NotEmpty(message = "Formação é obrigatório")
+    @NotEmpty(message = "Formação do professor é obrigatória")
     @Column(name = "formacao_professor", unique = true)
     private String formacao;
 

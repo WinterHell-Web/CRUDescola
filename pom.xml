@@ -64,6 +64,13 @@
 			<version>1.9.4</version>
 		</dependency>
 
+		<!-- Útil -->
+		<dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>4.2.2</version>
+        </dependency>
+
 		<!-- Tools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

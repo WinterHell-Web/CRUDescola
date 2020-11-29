@@ -1,5 +1,6 @@
 package com.adv.CRUDescola.controller.alunos;
 
+import java.io.ByteArrayInputStream;
 import java.security.Principal;
 
 import javax.validation.Valid;
@@ -10,8 +11,13 @@ import com.adv.CRUDescola.repository.AlunosRepository;
 import com.adv.CRUDescola.repository.UsuariosRepository;
 import com.adv.CRUDescola.service.AlunosService;
 import com.adv.CRUDescola.service.UsuariosService;
+import com.adv.CRUDescola.util.PdfGeneratorReport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +62,7 @@ public class AlunoController
         return new ModelAndView("redirect:/aluno/dadosCad");
     }
     @PostMapping("/dadosCad/update/pass")
-    public ModelAndView alteracaoDadosCad(@Valid UsuariosModel usuario, RedirectAttributes attributes)
+    public ModelAndView alteracaoDadosCad(UsuariosModel usuario, RedirectAttributes attributes)
     {
         String[] mensagem = usuariosService.atualizarPass(usuario);
   
@@ -76,5 +82,24 @@ public class AlunoController
         mv.addObject("alunos", alunos.findByUsuario(usu.getId()));
 
         return mv;
+    }
+
+    // Controle de geração de PDF
+    @RequestMapping(value = "/pdfaluno", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> alunosReport(Principal principal) 
+    {
+        UsuariosModel usu = usuarios.findByUsername(principal.getName());
+        AlunosModel aluno = alunos.findByUsuario(usu.getId());
+
+        ByteArrayInputStream bis = PdfGeneratorReport.alunosReport(aluno);
+
+        var headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=Notas - " + aluno.getNome() + ".pdf");
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bis));
     }
 }

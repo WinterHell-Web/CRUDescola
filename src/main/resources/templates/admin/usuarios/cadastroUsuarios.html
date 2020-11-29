@@ -30,15 +30,15 @@
 
                 <div class="form-group">
                     <label for="InputUsuario">Nome de usuário</label>
-                    <input type="text" class="form-control" id="inputUsuario" th:field="*{user}">
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('user')} ? is-invalid" id="inputUsuario" th:field="*{user}">
                 </div>
                 <div class="form-group">
                     <label for="InputSenha">Senha</label>
-                    <input type="password" class="form-control" id="inputSenha" th:field="*{password}">
+                    <input type="password" class="form-control" th:classappend="${#fields.hasErrors('password')} ? is-invalid" id="inputSenha" th:field="*{password}">
                 </div>
                 <div class="form-group">
                     <label for="SelectRegra">Nível de acesso</label>
-                    <select class="form-control" id="selectRegra" th:field="*{regra}">
+                    <select class="form-control" th:classappend="${#fields.hasErrors('regra')} ? is-invalid" id="selectRegra" th:field="*{regra}">
                         <option value="">Selecione um nível...</option>
                         <option value="ROLE_ADM">Administrador</option>
                         <option value="ROLE_ALUNO">Aluno</option>

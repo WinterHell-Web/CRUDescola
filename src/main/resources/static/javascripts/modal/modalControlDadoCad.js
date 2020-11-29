@@ -15,7 +15,8 @@ $('#exampleModalCenter1').on('show.bs.modal', function (e)
 
     modal.find('.modal-body').find('#id1').val(id);  
     modal.find('.modal-body').find('#nome').val(nome);
-    modal.find('.modal-body').find('#cpf').val(cpf);
+    modal.find('.modal-body').find('#cpf1').val(cpf);
+    modal.find('.modal-body').find('#cpf2').val(cpf);
     modal.find('.modal-body').find('#user').val(user);  
     
     modal.find('.modal-body').find('#ra').val(ra);

@@ -28,11 +28,11 @@
 
                 <div class="form-group">
                     <label for="InputMateria">Nome da matéria</label>
-                    <input type="text" class="form-control" id="inputMateria" th:field="*{nome}">
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="inputMateria" th:field="*{nome}">
                 </div>
                 <div class="form-group">
                     <label for="SelectCurso">Curso</label>
-                    <select class="form-control" id="selectCurso" th:field="*{curso.id}">
+                    <select class="form-control" id="selectCurso" th:field="*{curso.id}" required>
                         <option value="">Selecione um curso...</option>
                         <option th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.nome}"></option>
                     </select>

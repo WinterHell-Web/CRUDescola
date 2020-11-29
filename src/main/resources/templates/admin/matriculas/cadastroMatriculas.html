@@ -27,8 +27,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="SelectCurso">Nome da matéria</label>
-                    <select class="form-control" id="selectCurso" th:field="*{materia.id}">
+                    <label for="SelectMateria">Nome da matéria</label>
+                    <select class="form-control" id="selectCurso" th:field="*{materia.id}" required>
                         <option value="">Selecione uma materia...</option>
                         <optgroup th:each="curso : ${cursos}" th:label="${curso.nome}">
                             <option th:each="materia : ${curso.listMateria}" th:value="${materia.id}" th:text="${materia.nome}"></option>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="form-group">
                     <label for="SelectCurso">Nome do aluno</label>
-                    <select class="form-control" id="selectCurso" th:field="*{aluno.id}">
+                    <select class="form-control" id="selectCurso" th:field="*{aluno.id}" required>
                         <option value="">Selecione um aluno...</option>
                         <option th:each="aluno : ${alunos}" th:value="${aluno.id}" th:text="${aluno.nome}"></option>
                     </select>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                     <label for="SelectCurso">Situação</label>
-                    <select class="form-control" id="selectCurso" th:field="*{situacao.id}">
+                    <select class="form-control" id="selectCurso" th:field="*{situacao.id}" required>
                         <option value="">Selecione uma situação...</option>
                         <option th:each="situacao : ${situacoes}" th:value="${situacao.id}" th:text="${situacao.descricao}"></option>
                     </select>

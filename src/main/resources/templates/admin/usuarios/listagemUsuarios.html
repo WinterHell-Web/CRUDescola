@@ -88,7 +88,7 @@
                                 <input type="hidden" id="p" value="" th:field="*{password}">
                                 <div class="form-group">
                                     <label for="SelectRegra">Regra</label>
-                                    <select class="form-control" id="selectRegra" th:field="*{regra}">
+                                    <select class="form-control" id="selectRegra" th:field="*{regra}" required>
                                         <option value="ROLE_ADM">Administrador</option>
                                         <option value="ROLE_ALUNO">Aluno</option>
                                         <option value="ROLE_PROFESSOR">Professor</option>
