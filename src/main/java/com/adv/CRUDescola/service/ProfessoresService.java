@@ -59,10 +59,6 @@ public class ProfessoresService
         {
             response[0] = msg2;
             response[1] = "Erro ao alterar o professor";
-
-            System.out.println();
-            System.out.println(e);
-            System.out.println();
         }
         
         return response;

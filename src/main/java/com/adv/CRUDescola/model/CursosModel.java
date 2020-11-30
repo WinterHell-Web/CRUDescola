@@ -38,14 +38,16 @@ public class CursosModel
 
         this.id = 0;
         this.nome = "";
+        this.periodo = "";
     }
 
-    public CursosModel(Integer id, String nome) 
+    public CursosModel(Integer id, String nome, String periodo) 
     {
         super( );
 
         this.id = id;
         this.nome = nome;
+        this.periodo = periodo;
     }
 
     public Integer getId() 

@@ -127,3 +127,7 @@ ALTER TABLE alunos
 ALTER TABLE professores
     ADD CONSTRAINT professores_usuarios_fk FOREIGN KEY ( usuario_id )
         REFERENCES usuarios ( id_usuario );
+
+-- Usuário - Administrador
+insert into usuarios (user_usuario, password_usuario, regra_usuario, ativo_usuario)
+values ('admin', '$2a$10$TMfY1IunLWQy/wfKgltNZ.jyaJObeOdAfBK2VPicJzVh10P0nnDQO', 'ROLE_ADM', 1);
