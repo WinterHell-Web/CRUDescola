@@ -71,7 +71,7 @@ public class AlunoController
         return new ModelAndView("redirect:/aluno/dadosCad");
     }
     
-    // Controle de listagemd de matriculas
+    // Controle de listagem de matriculas
     @RequestMapping("/matriculas")
     public ModelAndView cadastroAluno(AlunosModel aluno, Principal principal)
     {

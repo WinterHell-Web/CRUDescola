@@ -54,7 +54,7 @@ public class CursosController
   
         attributes.addFlashAttribute(mensagem[0], mensagem[1]);
 
-        return new ModelAndView("redirect:admin/cursos/cadastro");
+        return new ModelAndView("redirect:/admin/cursos/cadastro");
     }
 
     // Controle de edição

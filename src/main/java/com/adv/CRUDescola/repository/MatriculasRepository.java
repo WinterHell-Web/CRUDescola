@@ -13,7 +13,7 @@ public interface MatriculasRepository extends JpaRepository<MatriculasModel, Int
     @Modifying
     @Transactional(readOnly = false)
     @Query(value = "UPDATE matriculas SET nota_1_matricula = ?1, nota_2_matricula = ?2, nota_final_matricula = ?3, faltas_matricula = ?4 WHERE id_matricula = ?5", nativeQuery = true)
-    public void updateMatriculaById(double nota1, double nota2, double notaFinal, Integer faltas, Integer id);
+    public void updateMatriculaById(Integer nota1, Integer nota2, double notaFinal, Integer faltas, Integer id);
 
     // Atualiza situação
     @Modifying
