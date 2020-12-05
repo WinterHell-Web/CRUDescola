@@ -20,9 +20,9 @@ $('#exampleModalCenter').on('show.bs.modal', function (e)
         modal.find('.modal-body').find('#optionUser').val(0).text("");
     }
 
-    modal.find('.modal-body').find('#id').val(id);  
-    modal.find('.modal-body').find('#nome').val(nome);
-    modal.find('.modal-body').find('#ra').val(ra);
-    modal.find('.modal-body').find('#cpf').val(cpf);
-    modal.find('.modal-body').find('#nasc').val(nasc);
+    modal.find('.modal-body').find('#inputId').val(id);  
+    modal.find('.modal-body').find('#inputNome').val(nome);
+    modal.find('.modal-body').find('#inputRA').val(ra);
+    modal.find('.modal-body').find('#inputCPF').val(cpf);
+    modal.find('.modal-body').find('#inputNasc').val(nasc);
 });

@@ -82,18 +82,18 @@
                         </div>
                         <form action="#" th:action="@{/admin/professores/update}" th:object="${professoresModel}" method="POST">
                             <div class="modal-body">
-                                <input type="hidden" id="id" value="" th:field="*{id}">
+                                <input type="hidden" id="inputId" value="" th:field="*{id}">
                                 <div class="form-group">
                                     <label for="recipient-nome" class="col-form-label">Nome</label>
-                                    <input type="text" class="form-control" id="nome" th:field="*{nome}" required>
+                                    <input type="text" class="form-control" id="inputNome" th:field="*{nome}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-cpf" class="col-form-label">CPF</label>
-                                    <input type="text" class="form-control" id="cpf" th:field="*{cpf}" required>
+                                    <input type="text" class="form-control" id="inputCPF" th:field="*{cpf}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-formacao" class="col-form-label">Formação</label>
-                                    <input type="text" class="form-control" id="formacao" th:field="*{formacao}" required>
+                                    <input type="text" class="form-control" id="inputFormacao" th:field="*{formacao}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="SelectUsuario">Usuário</label>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                    <button type="submit" class="btn btn-primary" id="btAlterar">Alterar</button>
                                 </div>
                             </div>
                         </form>

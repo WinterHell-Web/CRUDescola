@@ -62,7 +62,7 @@ public class AlunoController
         return new ModelAndView("redirect:/aluno/dadosCad");
     }
     @PostMapping("/dadosCad/update/pass")
-    public ModelAndView alteracaoDadosCad(UsuariosModel usuario, RedirectAttributes attributes)
+    public ModelAndView alteracaoPass(UsuariosModel usuario, RedirectAttributes attributes)
     {
         String[] mensagem = usuariosService.atualizarPass(usuario);
   
@@ -73,7 +73,7 @@ public class AlunoController
     
     // Controle de listagem de matriculas
     @RequestMapping("/matriculas")
-    public ModelAndView cadastroAluno(AlunosModel aluno, Principal principal)
+    public ModelAndView listagemMatriculas(AlunosModel aluno, Principal principal)
     {
         ModelAndView mv = new ModelAndView("aluno/listagemHistorico");
 

@@ -79,13 +79,13 @@
                         </div>
                         <form action="#" th:action="@{/admin/usuarios/update}" th:object="${usuariosModel}" method="POST">
                             <div class="modal-body">
-                                <input type="hidden" id="id" value="" th:field="*{id}">
+                                <input type="hidden" id="inputId" value="" th:field="*{id}">
                                 <div class="form-group">
                                     <label for="recipient-user" class="col-form-label">Usuário</label>
-                                    <input type="text" class="form-control" id="user1" disabled>
-                                    <input type="hidden" id="user2" value="" th:field="*{user}">
+                                    <input type="text" class="form-control" id="inputUser1" disabled>
+                                    <input type="hidden" id="inputUser2" value="" th:field="*{user}">
                                 </div>
-                                <input type="hidden" id="p" value="" th:field="*{password}">
+                                <input type="hidden" id="inputP" value="" th:field="*{password}">
                                 <div class="form-group">
                                     <label for="SelectRegra">Regra</label>
                                     <select class="form-control" id="selectRegra" th:field="*{regra}" required>
@@ -96,11 +96,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-ativo" class="col-form-label">Ativo</label>
-                                    <input type="checkbox" id="ativo" class="form-control" th:field="*{ativo}">
+                                    <input type="checkbox" id="inputAtivo" class="form-control" th:field="*{ativo}">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                    <button type="submit" class="btn btn-primary" id="btAlterar">Alterar</button>
                                 </div>
                             </div>
                         </form>

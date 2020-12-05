@@ -10,12 +10,12 @@ $('#exampleModalCenter').on('show.bs.modal', function (e)
     var regra = button.data('regra');
     var ativo = button.data('ativo');
 
-    modal.find('.modal-body').find('#id').val(id);  
-    modal.find('.modal-body').find('#nome1').val(nome);
-    modal.find('.modal-body').find('#nome2').val(nome);
-    modal.find('.modal-body').find('#user1').val(user);
-    modal.find('.modal-body').find('#user2').val(user);
-    modal.find('.modal-body').find('#p').val(p);
+    modal.find('.modal-body').find('#inputId').val(id);  
+    modal.find('.modal-body').find('#inputNome1').val(nome);
+    modal.find('.modal-body').find('#inputNome2').val(nome);
+    modal.find('.modal-body').find('#inputUser1').val(user);
+    modal.find('.modal-body').find('#inputUser2').val(user);
+    modal.find('.modal-body').find('#inputP').val(p);
     modal.find('.modal-body').find('#selectRegra').val(regra);
-    modal.find('.modal-body').find('#ativo').prop('checked', ativo);
+    modal.find('.modal-body').find('#inputAtivo').prop('checked', ativo);
 })

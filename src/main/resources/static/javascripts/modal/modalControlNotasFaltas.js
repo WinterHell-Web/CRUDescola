@@ -9,9 +9,9 @@ $('#exampleModalCenter').on('show.bs.modal', function (e)
     var nota2 = button.data('nota2');
     var faltas = button.data('faltas');
 
-    modal.find('.modal-body').find('#id').val(id);  
-    modal.find('.modal-body').find('#nome').val(nome);  
-    modal.find('.modal-body').find('#nota1').val(nota1);
-    modal.find('.modal-body').find('#nota2').val(nota2);
-    modal.find('.modal-body').find('#faltas').val(faltas);
+    modal.find('.modal-body').find('#inputId').val(id);  
+    modal.find('.modal-body').find('#inputNome').val(nome);  
+    modal.find('.modal-body').find('#inputNota1').val(nota1);
+    modal.find('.modal-body').find('#inputNota2').val(nota2);
+    modal.find('.modal-body').find('#inputFaltas').val(faltas);
 })

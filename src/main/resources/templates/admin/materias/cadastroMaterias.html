@@ -27,8 +27,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="InputMateria">Nome da matéria</label>
-                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="inputMateria" th:field="*{nome}">
+                    <label for="InputMateria">Nome</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="inputNome" th:field="*{nome}">
                 </div>
                 <div class="form-group">
                     <label for="SelectCurso">Curso</label>
@@ -38,7 +38,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="SelectSemestre">Semestre</label>
+                    <label for="InputSemestre">Semestre</label>
                     <input type="number" class="form-control" id="inputSemestre" min="1" max="6" value="1" th:field="*{semestre}">
                 </div>
                 <div class="form-group">
@@ -48,7 +48,7 @@
                         <option th:each="professor : ${professores}" th:value="${professor.id}" th:text="${professor.nome}"></option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-dark">Cadastrar</button>
+                <button type="submit" class="btn btn-dark" id="btCadastrar">Cadastrar</button>
             </form>                
         </section>
     </body>

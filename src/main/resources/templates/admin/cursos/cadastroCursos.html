@@ -27,8 +27,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="nome" class="control-label">Nome do curso</label>
-                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="nome" th:field="*{nome}"/>
+                    <label for="nome" class="control-label">Nome</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="inputNome" th:field="*{nome}"/>
                 </div>
                 <div class="form-group">
                     <label for="SelectPeriodo">Periodo</label>
@@ -39,7 +39,7 @@
                         <option value="Noite">Noite</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-dark">Cadastrar</button>
+                <button type="submit" class="btn btn-dark" id="btCadastrar">Cadastrar</button>
             </form>
         </section>
     </body>

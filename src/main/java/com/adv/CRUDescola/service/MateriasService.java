@@ -20,17 +20,12 @@ public class MateriasService
         String msg1 = "cadastroSuccess";
         String msg2 = "cadastroError";
 
-        if (materia.getProfessor() != null)
+        if (!verificaProfessor(materia))
         {
-            int matQnt = materias.countProfMat(materia.getProfessor().getId());
+            response[0] = msg2;
+            response[1] = "Não é possível cadastrar o mesmo professor em mais de 3 matérias";
 
-            if (matQnt >= 3)
-            {
-                response[0] = msg2;
-                response[1] = "Não é possível cadastrar o mesmo professor em mais de 3 matérias";
-
-                return response;       
-            }
+            return response;
         }
 
         try 
@@ -61,17 +56,12 @@ public class MateriasService
         String msg1 = "alteracaoSuccess";
         String msg2 = "alteracaoError";
 
-        if (materia.getProfessor() != null)
+        if (!verificaProfessor(materia))
         {
-            int matQnt = materias.countProfMat(materia.getProfessor().getId());
+            response[0] = msg2;
+            response[1] = "Não é possível cadastrar o mesmo professor em mais de 3 matérias";
 
-            if (matQnt >= 3)
-            {
-                response[0] = msg2;
-                response[1] = "Não é possível cadastrar o mesmo professor em mais de 3 matérias";
-
-                return response;       
-            }
+            return response;
         }
 
         try 
@@ -111,5 +101,20 @@ public class MateriasService
         }
         
         return response;
+    }
+
+    private boolean verificaProfessor(MateriasModel materia)
+    {
+        if (materia.getProfessor() != null)
+        {
+            int matQnt = materias.countProfMat(materia.getProfessor().getId());
+
+            if (matQnt >= 3)
+            {
+                return false;       
+            }
+        }
+
+        return true;
     }
 }

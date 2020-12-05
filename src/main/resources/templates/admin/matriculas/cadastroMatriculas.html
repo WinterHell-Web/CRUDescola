@@ -27,8 +27,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="SelectMateria">Nome da matéria</label>
-                    <select class="form-control" id="selectCurso" th:field="*{materia.id}" required>
+                    <label for="SelectMateria">Matéria</label>
+                    <select class="form-control" id="selectMateria" th:field="*{materia.id}" required>
                         <option value="">Selecione uma materia...</option>
                         <optgroup th:each="curso : ${cursos}" th:label="${curso.nome}">
                             <option th:each="materia : ${curso.listMateria}" th:value="${materia.id}" th:text="${materia.nome}"></option>
@@ -36,28 +36,28 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="SelectCurso">Nome do aluno</label>
-                    <select class="form-control" id="selectCurso" th:field="*{aluno.id}" required>
+                    <label for="SelectCurso">Aluno</label>
+                    <select class="form-control" id="selectAluno" th:field="*{aluno.id}" required>
                         <option value="">Selecione um aluno...</option>
                         <option th:each="aluno : ${alunos}" th:value="${aluno.id}" th:text="${aluno.nome}"></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="SelectSemestre">Ano</label>
-                    <input type="number" class="form-control" id="inputSemestre" th:min="${#dates.year(#dates.createNow())}" th:max="${#dates.year(#dates.createNow())} + 10" th:value="${#dates.year(#dates.createNow())}" th:field="*{ano}">
+                    <input type="number" class="form-control" id="inputAno" th:min="${#dates.year(#dates.createNow())}" th:max="${#dates.year(#dates.createNow())} + 10" th:value="${#dates.year(#dates.createNow())}" th:field="*{ano}">
                 </div>
                 <div class="form-group">
                     <label for="SelectSemestre">Semestre</label>
                     <input type="number" class="form-control" id="inputSemestre" min="1" max="10" value="1" th:field="*{semestre}">
                 </div>
                 <div class="form-group">
-                    <label for="SelectCurso">Situação</label>
-                    <select class="form-control" id="selectCurso" th:field="*{situacao.id}" required>
+                    <label for="SelectSituacao">Situação</label>
+                    <select class="form-control" id="selectSituacao" th:field="*{situacao.id}" required>
                         <option value="">Selecione uma situação...</option>
                         <option th:each="situacao : ${situacoes}" th:value="${situacao.id}" th:text="${situacao.descricao}"></option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-dark">Cadastrar</button>
+                <button type="submit" class="btn btn-dark" id="btCadastrar">Cadastrar</button>
             </form>
         </section>
     </body>

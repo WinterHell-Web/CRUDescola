@@ -85,22 +85,22 @@
                         </div>
                         <form action="#" th:action="@{/admin/alunos/update}" th:object="${alunosModel}" method="POST">
                             <div class="modal-body">
-                                <input type="hidden" id="id" value="" th:field="*{id}">
+                                <input type="hidden" id="inputId" value="" th:field="*{id}">
                                 <div class="form-group">
                                     <label for="recipient-nome" class="col-form-label">Nome</label>
-                                    <input type="text" class="form-control" id="nome" th:field="*{nome}" required>
+                                    <input type="text" class="form-control" id="inputNome" th:field="*{nome}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-ra" class="col-form-label">RA</label>
-                                    <input type="text" class="form-control" id="ra" th:field="*{ra}" required>
+                                    <input type="text" class="form-control" id="inputRA" th:field="*{ra}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-cpf" class="col-form-label">CPF</label>
-                                    <input type="text" class="form-control" id="cpf" th:field="*{cpf}" required>
+                                    <input type="text" class="form-control" id="inputCPF" th:field="*{cpf}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-nasc" class="col-form-label">Data de nascimento</label>
-                                    <input type="date" class="form-control" id="nasc" th:field="*{nasc}" required>
+                                    <input type="date" class="form-control" id="inputNasc" th:field="*{nasc}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="SelectUsuario">Usuário</label>
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                    <button type="submit" class="btn btn-primary" id="btAlterar">Alterar</button>
                                 </div>
                             </div>
                         </form>

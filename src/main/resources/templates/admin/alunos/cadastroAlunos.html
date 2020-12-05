@@ -33,8 +33,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="InputAluno">Nome do aluno</label>
-                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="inputAluno" th:field="*{nome}">
+                    <label for="InputAluno">Nome</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nome')} ? is-invalid" id="inputNome" th:field="*{nome}">
                 </div>
                 <div class="form-group">
                     <label for="InputRA">RA</label>
@@ -50,8 +50,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="InputNasc">Possui ensino médio completo</label>
-                    <input type="checkbox" class="form-control" required>
+                    <label for="InputEnsMed">Possui ensino médio completo</label>
+                    <input type="checkbox" class="form-control" id="inputEnsMed" required>
                 </div>
 
                 <div class="form-group">
@@ -61,7 +61,7 @@
                         <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.user}"></option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-dark">Cadastrar</button>
+                <button type="submit" class="btn btn-dark" id="btCadastrar">Cadastrar</button>
             </form>
         </section>
     </body>

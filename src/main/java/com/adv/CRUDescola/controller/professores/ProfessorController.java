@@ -41,7 +41,7 @@ public class ProfessorController
 
     // Controle de dados cadastrais
     @RequestMapping("/dadosCad")
-    public ModelAndView listagemDadosCad (ProfessoresModel professor, UsuariosModel usuario, Principal principal)
+    public ModelAndView listagemDadosCad(ProfessoresModel professor, UsuariosModel usuario, Principal principal)
     {
         ModelAndView mv = new ModelAndView("professor/dadosCadastrais");
 
@@ -62,7 +62,7 @@ public class ProfessorController
         return new ModelAndView("redirect:/professor/dadosCad");
     }
     @PostMapping("/dadosCad/update/pass")
-    public ModelAndView alteracaoDadosCad(UsuariosModel usuario, RedirectAttributes attributes)
+    public ModelAndView alteracaoPass(UsuariosModel usuario, RedirectAttributes attributes)
     {
         String[] mensagem = usuariosService.atualizarPass(usuario);
   
@@ -97,7 +97,7 @@ public class ProfessorController
         return mv;
     }
     @PostMapping("/cadNotas")
-    public ModelAndView cadastrarProfessores(@Valid MatriculasModel matricula, RedirectAttributes attributes)
+    public ModelAndView cadastrarNotaFalta(@Valid MatriculasModel matricula, RedirectAttributes attributes)
     {
         String[] mensagem = matriculasService.atualizarNotaFalta(matricula);
   

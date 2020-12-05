@@ -71,14 +71,14 @@
                         </div>
                         <form th:action="@{/admin/matriculas/update}" th:object="${matriculasModel}" method="POST">
                             <div class="modal-body">
-                                <input type="hidden" id="id" value="" th:field="*{id}">
+                                <input type="hidden" id="inputId" value="" th:field="*{id}">
                                 <div class="form-group">
-                                    <label for="recipient-nomeMat" class="col-form-label">Nome da matéria</label>
-                                    <input type="text" class="form-control" id="materia" disabled>
+                                    <label for="recipient-nomeMat" class="col-form-label">Matéria</label>
+                                    <input type="text" class="form-control" id="inputMateria" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-notaF" class="col-form-label">Nota final</label>
-                                    <input type="text" class="form-control" id="nota" disabled>
+                                    <input type="text" class="form-control" id="inputNotaFinal" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="SelectSituacao">Situação</label>
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                    <button type="submit" class="btn btn-primary" id="btAlterar">Alterar</button>
                                 </div>
                             </div>
                         </form>

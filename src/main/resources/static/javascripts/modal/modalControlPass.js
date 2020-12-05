@@ -5,5 +5,5 @@ $('#exampleModalCenter2').on('show.bs.modal', function (e)
 
     var id = button.data('id');
 
-    modal.find('.modal-body').find('#id').val(id);   
+    modal.find('.modal-body').find('#inputId').val(id);   
 });

@@ -29,25 +29,13 @@ public class MatriculasService
 
         String msg1 = "cadastroSuccess";
         String msg2 = "cadastroError";
-
-        AlunosModel aluno = alunos.findOneById(matricula.getAluno().getId());
-        MateriasModel materia = materias.findOneById(matricula.getMateria().getId());
-
-        if (!aluno.getListMatricula().isEmpty())
+        
+        if (!verificaPeriodo(matricula))
         {
-            for (MatriculasModel aux : aluno.getListMatricula())
-            {
-                if (!aux.getMateria().getCurso().getId().equals(materia.getCurso().getId()))
-                {
-                    if (aux.getMateria().getCurso().getPeriodo().equals(materia.getCurso().getPeriodo()))
-                    {
-                        response[0] = msg2;
-                        response[1] = "O aluno não pode estar matriculado em dois cursos no mesmo período";
+            response[0] = msg2;
+            response[1] = "O aluno não pode estar matriculado em dois cursos no mesmo período";
 
-                        return response;
-                    }
-                }
-            }
+            return response;
         }
 
         try 
@@ -138,5 +126,27 @@ public class MatriculasService
         }
         
         return response;
+    }
+
+    private boolean verificaPeriodo(MatriculasModel matricula)
+    {
+        AlunosModel aluno = alunos.findOneById(matricula.getAluno().getId());
+        MateriasModel materia = materias.findOneById(matricula.getMateria().getId());
+
+        if (!aluno.getListMatricula().isEmpty())
+        {
+            for (MatriculasModel aux : aluno.getListMatricula())
+            {
+                if (!aux.getMateria().getCurso().getId().equals(materia.getCurso().getId()))
+                {
+                    if (aux.getMateria().getCurso().getPeriodo().equals(materia.getCurso().getPeriodo()))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 }

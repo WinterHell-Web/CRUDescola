@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="InputUsuario">Nome de usuário</label>
+                    <label for="InputUsuario">Usuário</label>
                     <input type="text" class="form-control" th:classappend="${#fields.hasErrors('user')} ? is-invalid" id="inputUsuario" th:field="*{user}">
                 </div>
                 <div class="form-group">
@@ -45,8 +45,8 @@
                         <option value="ROLE_PROFESSOR">Professor</option>
                     </select>
                 </div>
-                <input type="hidden" value="1" th:field="*{ativo}">
-                <button type="submit" class="btn btn-dark">Cadastrar</button>
+                <input type="hidden" value="1" id="inputAtivo" th:field="*{ativo}">
+                <button type="submit" class="btn btn-dark" id="btCadastrar">Cadastrar</button>
             </form>   
         </section>
     </body>

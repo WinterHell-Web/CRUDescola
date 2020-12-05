@@ -8,8 +8,8 @@ $('#exampleModalCenter').on('show.bs.modal', function (e)
     var nota = button.data('nota');
     var situacao = button.data('situacao');
 
-    modal.find('.modal-body').find('#id').val(id);  
-    modal.find('.modal-body').find('#materia').val(materia);
-    modal.find('.modal-body').find('#nota').val(nota);
+    modal.find('.modal-body').find('#inputId').val(id);  
+    modal.find('.modal-body').find('#inputMateria').val(materia);
+    modal.find('.modal-body').find('#inputNotaFinal').val(nota);
     modal.find('.modal-body').find('#selectSituacao').val(situacao);
 })

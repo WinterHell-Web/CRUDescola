@@ -82,26 +82,26 @@
                         </div>
                         <form action="#" th:action="@{/professor/cadNotas}" th:object="${matriculasModel}" method="POST">
                             <div class="modal-body">
-                                <input type="hidden" id="id" value="" th:field="*{id}">
+                                <input type="hidden" id="inputId" value="" th:field="*{id}">
                                 <div class="form-group">
                                     <label for="recipient-nome" class="col-form-label">Nome</label>
-                                    <input type="text" class="form-control" id="nome" disabled>
+                                    <input type="text" class="form-control" id="inputNome" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-nome" class="col-form-label">Nota 1</label>
-                                    <input type="number" minlength="0" maxlength="10" class="form-control" id="nota1" th:field="*{nota1}">
+                                    <input type="number" minlength="0" maxlength="10" class="form-control" id="inputNota1" th:field="*{nota1}">
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-nome" class="col-form-label">Nota 2</label>
-                                    <input type="number" minlength="0" maxlength="10" class="form-control" id="nota2" th:field="*{nota2}">
+                                    <input type="number" minlength="0" maxlength="10" class="form-control" id="inputNota2" th:field="*{nota2}">
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-nome" class="col-form-label">Faltas</label>
-                                    <input type="number" minlength="0" class="form-control" id="faltas" th:field="*{faltas}">
+                                    <input type="number" minlength="0" class="form-control" id="inputFaltas" th:field="*{faltas}">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                    <button type="submit" class="btn btn-primary" id="btAlterar">Alterar</button>
                                 </div>
                             </div>
                         </form>
