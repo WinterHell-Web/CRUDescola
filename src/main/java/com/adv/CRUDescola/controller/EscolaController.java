@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class EscolaController 
 {
     @RequestMapping("/escola")
-    public String cadastroAlunos()
+    public String sobreEscola()
     {
         return "/escola";
     }

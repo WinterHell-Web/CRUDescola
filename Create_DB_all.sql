@@ -131,3 +131,8 @@ ALTER TABLE professores
 -- Usuário - Administrador
 insert into usuarios (user_usuario, password_usuario, regra_usuario, ativo_usuario)
 values ('admin', '$2a$10$TMfY1IunLWQy/wfKgltNZ.jyaJObeOdAfBK2VPicJzVh10P0nnDQO', 'ROLE_ADM', 1);
+
+-- Situações
+insert into situacoes (descricao_situacao) values ("CURSANDO");
+insert into situacoes (descricao_situacao) values ("APROVADO");
+insert into situacoes (descricao_situacao) values ("REPROVADO");
