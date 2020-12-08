@@ -92,6 +92,6 @@ public class ProfessoresController
   
         attributes.addFlashAttribute(mensagem[0], mensagem[1]);
 
-        return new ModelAndView("redirect:;/admin/professores");
+        return new ModelAndView("redirect:/admin/professores");
     }
 }

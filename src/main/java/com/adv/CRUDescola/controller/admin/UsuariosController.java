@@ -79,9 +79,9 @@ public class UsuariosController
     @PostMapping("/update")
     public ModelAndView editarUsuario(@Valid UsuariosModel usuario, BindingResult result, RedirectAttributes attributes)
     {
-        usuariosService.atualizar(usuario);
-
-        attributes.addFlashAttribute("mensagem2", "Cadastro de usuário alterado com sucesso!");
+        String[] mensagem = usuariosService.atualizar(usuario);
+  
+        attributes.addFlashAttribute(mensagem[0], mensagem[1]);
 
         return new ModelAndView("redirect:/admin/usuarios");
     }
@@ -90,9 +90,9 @@ public class UsuariosController
     @PostMapping("/delete")
     public ModelAndView deletarUsuario(@RequestParam(name = "id") Integer id, RedirectAttributes attributes)
     {        
-        usuariosService.excluir(id);
+        String[] mensagem = usuariosService.excluir(id);
 
-        attributes.addFlashAttribute("mensagem3", "Cadastro de usuário apagado com sucesso!");
+        attributes.addFlashAttribute(mensagem[0], mensagem[1]);
 
         return new ModelAndView("redirect:/admin/usuarios");
     }

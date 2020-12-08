@@ -28,6 +28,11 @@ public class MateriasService
             return response;
         }
 
+        if (materia.getProfessor().getId().equals(0))
+        {
+            materia.setProfessor(null);
+        }
+
         try 
         {
             materias.save(materia);

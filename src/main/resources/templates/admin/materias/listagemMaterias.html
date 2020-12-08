@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="SelectProfessor">Professor</label>
-                                    <select class="form-control" id="selectProfessor" th:field="*{professor.id}" required>
+                                    <select class="form-control" id="selectProfessor" th:field="*{professor.id}">
                                         <option th:each="professor : ${professores}" th:value="${professor.id}" th:text="${professor.nome}"></option>
                                     </select>
                                 </div>

@@ -20,6 +20,11 @@ public class ProfessoresService
         String msg1 = "cadastroSuccess";
         String msg2 = "cadastroError";
 
+        if (professor.getUsuario().getId().equals(0))
+        {
+            professor.setUsuario(null);
+        }
+
         try 
         {
             professores.save(professor);
@@ -47,6 +52,11 @@ public class ProfessoresService
 
         String msg1 = "alteracaoSuccess";
         String msg2 = "alteracaoError";
+
+        if (professor.getUsuario().getId().equals(0))
+        {
+            professor.setUsuario(null);
+        }
 
         try 
         {
